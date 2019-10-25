@@ -26,4 +26,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
+    //TextFieldBoxes(https://github.com/HITGIF/TextFieldBoxes)
+    implementation 'com.github.HITGIF:TextFieldBoxes:1.4.4'
 }
