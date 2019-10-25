@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,39 +21,43 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="Enrollment Form"
+                android:layout_marginLeft="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-                android:id="@+id/mr_text_field_boxes"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/child_mr_container"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:hasClearButton="true"
-                app:labelText="MR Number"
-                app:maxCharacters="7"
-                app:minCharacters="7">
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="MR Number(0000000)">
 
-                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                    android:id="@+id/mr_extended_edit_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="0000000"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/child_mr_et"
                     android:inputType="number"
-                    app:alwaysShowHint="true" />
+                    android:maxLength="7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
-            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <studio.carbonylgroup.textfieldboxes.TextFieldBoxes
-                android:id="@+id/dob_text_field_boxes"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/child_dob_container"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:labelText="Birth Date">
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:hint="Date of Birth">
 
-                <studio.carbonylgroup.textfieldboxes.ExtendedEditText
-                    android:id="@+id/dob_extended_edit_text"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/child_dob_et"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
-
-            </studio.carbonylgroup.textfieldboxes.TextFieldBoxes>
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,6 +99,14 @@
                     android:entries="@array/preferred_time" />
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/register_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Register" />
+
         </LinearLayout>
     </ScrollView>
 
