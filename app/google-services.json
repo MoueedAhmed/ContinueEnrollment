@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "337082983369",
+    "firebase_url": "https://continueenrollment.firebaseio.com",
+    "project_id": "continueenrollment",
+    "storage_bucket": "continueenrollment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:337082983369:android:5d8fcfa372631ea8ed3e18",
+        "android_client_info": {
+          "package_name": "com.amoueedned.continueenrollment"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "337082983369-boimmur1cr7522e3dm31jc2oq1nlnm7u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.amoueedned.continueenrollment",
+            "certificate_hash": "4beb7da2da6399dcbe35b727763f195bf75b8da8"
+          }
+        },
+        {
+          "client_id": "337082983369-je88a9fjq7tmn010on0f3h3c59j3j3a3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC88QKeP58jqzpUcTroCWpR8axeD3wrm-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "337082983369-je88a9fjq7tmn010on0f3h3c59j3j3a3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

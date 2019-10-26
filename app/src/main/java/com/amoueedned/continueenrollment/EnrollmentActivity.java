@@ -104,7 +104,8 @@ public class EnrollmentActivity extends AppCompatActivity {
         //[end]
         //dynamically set languages spinner using mode spinner values
 
-
+        //[start]
+        //create user and password only if data is valid
         register_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +120,8 @@ public class EnrollmentActivity extends AppCompatActivity {
                 }
             }
         });
+        //[end]
+        //create user and password only if data is valid
 
         //[start]
         //show error if MR number is less than 7
