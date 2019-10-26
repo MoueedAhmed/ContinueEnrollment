@@ -1,9 +1,11 @@
 package com.amoueedned.continueenrollment;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -14,7 +16,12 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,6 +48,15 @@ public class EnrollmentActivity extends AppCompatActivity {
     private String preferredTime;
     private Spinner barrier_spinner;
     private Spinner preferred_time_spinner;
+    private static final String TAG = "EnrollmentActivity";
+    private static final String PASSWORD = "RaoMoueedAhmed1";
+    private static final String CHILD_DOB = "childDOB";
+    private static final String CHILD_MR = "childMR";
+    private static final String MODE = "mode";
+    private static final String LANGUAGE = "language";
+    private static final String BARRIER = "barrier";
+    private static final String PREFERRED_TIME = "preferredTime";
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +71,7 @@ public class EnrollmentActivity extends AppCompatActivity {
         child_mr_et = findViewById(R.id.child_mr_et);
         barrier_spinner = findViewById(R.id.barrier_spinner);
         preferred_time_spinner = findViewById(R.id.preferred_time_spinner);
+        mAuth = FirebaseAuth.getInstance();
 
         //[start]
         //dynamically set languages spinner using mode spinner values
@@ -116,7 +133,7 @@ public class EnrollmentActivity extends AppCompatActivity {
                     progressDialog.setMessage("Processing...");
                     progressDialog.show();
                     //getting MR Number and create user by setting default password "RaoMoueedAhmed1"
-                    createAccount("mr_no", "RaoMoueedAhmed1");
+                    createAccount(childMR+"@continue.com", "RaoMoueedAhmed1");
                 }
             }
         });
@@ -142,10 +159,34 @@ public class EnrollmentActivity extends AppCompatActivity {
         datePickerSetter();
     }
 
+    //[start]
+    //create firebase credentials using MR Number and default password
     private void createAccount(String mr_no, String password) {
-        Toast.makeText(EnrollmentActivity.this, "Account Created", Toast.LENGTH_LONG).show();
-        progressDialog.dismiss();
+
+        mAuth.createUserWithEmailAndPassword(mr_no, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Intent in = new Intent(EnrollmentActivity.this, WelcomeActivity.class)
+                                    .putExtra(CHILD_DOB, childDOB)
+                                    .putExtra(CHILD_MR, childMR)
+                                    .putExtra(MODE, mode)
+                                    .putExtra(LANGUAGE, language)
+                                    .putExtra(BARRIER, barrier)
+                                    .putExtra(PREFERRED_TIME, preferredTime);
+                            progressDialog.dismiss();
+                            startActivity(in);
+                            finish();
+                        } else {
+                            progressDialog.dismiss();
+                            Toast.makeText(EnrollmentActivity.this, task.getException().toString(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
     }
+    //[end]
+    //create firebase credentials using MR Number and default password
 
     private boolean validateData() {
         //validation of data
